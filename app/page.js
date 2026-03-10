@@ -1,103 +1,212 @@
-import Image from "next/image";
+import { UserButton } from "@clerk/nextjs";
+
+import { Briefcase, Sparkles, Globe, Brain, MessageCircle, Target, ChevronRight } from "lucide-react";
+import heroImage from "../public/lorito-hero.png";
 
 export default function Home() {
+  const features = [
+    {
+      icon: Briefcase,
+      title: "Profession-Based Lessons",
+      description: "Learn vocabulary and phrases tailored to your career — from medicine to marketing.",
+    },
+    {
+      icon: Sparkles,
+      title: "AI-Powered Personalization",
+      description: "Our AI adapts every lesson to your unique interests, pace, and learning style.",
+    },
+    {
+      icon: Globe,
+      title: "Real-World Context",
+      description: "Practice with scenarios drawn from your hobbies, travel goals, and daily life.",
+    },
+    {
+      icon: Brain,
+      title: "Smart Retention",
+      description: "Spaced repetition and adaptive quizzes ensure you remember what you learn.",
+    },
+  ];
+  
+  const steps = [
+    {
+      number: "01",
+      title: "Tell us about you",
+      description: "Share your profession, hobbies, and what you're passionate about.",
+      icon: Target,
+    },
+    {
+      number: "02",
+      title: "Get personalized lessons",
+      description: "Our AI crafts lessons around topics that matter to you.",
+      icon: MessageCircle,
+    },
+    {
+      number: "03",
+      title: "Learn & grow",
+      description: "Practice with real scenarios and watch your fluency take off.",
+      icon: Sparkles,
+    },
+  ];
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      <div className="min-h-screen bg-background">
+      {/* Nav */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+        <div className="container mx-auto flex items-center justify-between h-16 px-6">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg gradient-warm flex items-center justify-center">
+            <img
+                src={'/logo-img.png'}
+                alt="Lorito - AI language learning parrot mascot"
+                className="w-200 md:w-100 animate-float drop-shadow-2xl rounded-md"
+              />
+            </div>
+            <span className="font-display font-bold text-xl text-foreground color-primary">Lorito</span>
+          </div>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
+            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
+            <button className="gradient-warm text-primary-foreground font-medium text-sm px-5 py-2.5 rounded-lg shadow-warm hover:opacity-90 transition-opacity">
+              Get Started
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      {/* Hero */}
+      <section className="gradient-hero pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-up">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent text-accent-foreground text-sm font-medium mb-6">
+                <Sparkles className="w-4 h-4" />
+                AI-Powered Language Learning
+              </div>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+                Learn languages{" "}
+                <span className="text-gradient-warm">your way</span>
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed">
+                Lorito generates personalized lessons based on your profession, hobbies, and interests — so every word you learn is one you'll actually use.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="gradient-warm text-primary-foreground font-semibold px-8 py-3.5 rounded-xl shadow-warm hover:opacity-90 transition-all text-base flex items-center justify-center gap-2">
+                  Start Learning
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                <button className="border-2 border-border text-foreground font-semibold px-8 py-3.5 rounded-xl hover:bg-accent transition-colors text-base">
+                  See How It Works
+                </button>
+              </div>
+            </div>
+            <div className="flex justify-center animate-fade-up" style={{ animationDelay: "0.2s" }}>
+              <img
+                src={'/parrot.png'}
+                alt="Lorito - AI language learning parrot mascot"
+                className="w-72 md:w-96 animate-float drop-shadow-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section id="features" className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Why learners love <span className="text-gradient-warm">Lorito</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Every lesson is crafted around your life — making language learning feel natural, relevant, and exciting.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, i) => (
+              <div
+                key={feature.title}
+                className="group p-6 rounded-2xl bg-card border border-border shadow-card hover:shadow-warm transition-all duration-300 hover:-translate-y-1"
+                style={{ animationDelay: `${i * 0.1}s` }}
+              >
+                <div className="w-12 h-12 rounded-xl gradient-warm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <feature.icon className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <h3 className="font-display font-semibold text-foreground text-lg mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="py-20 md:py-28 gradient-warm-soft">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              How it works
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Three simple steps to start learning a language that fits your life.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {steps.map((step, i) => (
+              <div key={step.number} className="text-center">
+                <div className="w-16 h-16 rounded-2xl gradient-warm flex items-center justify-center mx-auto mb-5 shadow-warm">
+                  <step.icon className="w-7 h-7 text-primary-foreground" />
+                </div>
+                <span className="font-display text-sm font-bold text-primary/40 tracking-widest">{step.number}</span>
+                <h3 className="font-display font-semibold text-foreground text-xl mt-1 mb-3">{step.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">{step.description}</p>
+                {i < steps.length - 1 && (
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+                    <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center gradient-warm rounded-3xl p-12 md:p-16 shadow-warm">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+              Ready to learn your way?
+            </h2>
+            <p className="text-primary-foreground/80 text-lg mb-8">
+              Join thousands of learners who study languages tailored to their real lives.
+            </p>
+            <button className="bg-primary-foreground text-foreground font-semibold px-8 py-3.5 rounded-xl hover:bg-primary-foreground/90 transition-colors text-base shadow-lg">
+              Get Started with Lorito
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-12 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg gradient-warm flex items-center justify-center">
+                <span className="font-display font-bold text-primary-foreground text-xs">L</span>
+              </div>
+              <span className="font-display font-bold text-lg text-foreground">Lorito</span>
+            </div>
+            <div className="flex items-center gap-8">
+              <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
+              <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
+            </div>
+            <p className="text-sm text-muted-foreground">© 2026 Lorito. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
+    </div>
     </div>
   );
 }
