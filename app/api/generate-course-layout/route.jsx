@@ -27,6 +27,10 @@ Vocabulary must be tied to the concept and used in the examples and practice.
 
 Rules:
 - Output JSON ONLY. No markdown. No extra text.
+- Output STRICT VALID JSON.
+- Do NOT include trailing commas.
+- Do NOT include comments.
+- Do NOT include markdown code fences.
 - Match Target Language, Native Language, Level, Interests/Profession, and Goal.
 - Chapters should progress from easier → harder.
 - Every topic must include BOTH conceptLesson and practice.
@@ -233,15 +237,20 @@ export async function POST(req) {
     }
 
     // Clean up any accidental ```json wrappers
-    const rawJson = rawText.replace(/```json\s*|```/g, "").trim();
+    const rawJson = rawText
+  .replace(/```json\s*|```/g, "")
+  .replace(/,\s*([}\]])/g, "$1")
+  .trim();
 
-    let jsonResp;
-    try {
-      jsonResp = JSON.parse(rawJson);
-    } catch (err) {
-      console.error("FAILED TO PARSE JSON:", rawJson);
-      throw new Error("Gemini returned malformed JSON.");
-    }
+  let jsonResp;
+  try {
+    jsonResp = JSON.parse(rawJson);
+  } catch (err) {
+    console.error("FAILED TO PARSE JSON:", rawJson);
+    throw new Error("Gemini returned malformed JSON.");
+  }
+
+
 
     const course = jsonResp?.course ?? {};
 
